@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" language="JavaScript">
+		    function f_validate(){
+		    	var uname=document.getElementById("username");
+		    	var upass1=document.getElementById("userpass1");
+		    	var upass2=document.getElementById("userpass2");
+		    	var urealname=document.getElementById("realname");
+		    	var unum=document.getElementById("num");
+		    	if(uname.value==null||uname.value==""){
+		    		alert("用户名不能为空")
+		    		return false;
+		    	}else if(uname.value.length<6||uname.value.length>12){
+		    		alert("用户名长度在6-12个字符之间")
+		    		return false;
+		    	}else if(upass1.value==null||upass1.value==""){
+		    		alert("密码不能为空")
+		    		return false;
+		    	}else if(upass1.value.length<8||upass1.value.length>16){
+		    		alert("密码长度在8-16个字符之间")
+		    		return false;
+		    	}else if(upass2.value!=upass1.value){
+		    		alert("确认密码与密码不一致")
+		    		return false;
+		    	}else if(urealname.value==null||urealname.value==""){
+		    		alert("真实姓名不能为空")
+		    		return false;
+		    	}else if(unum.value==null||unum.value==""){
+		    		alert("身份证号码不能为空")
+		    		return false;
+		    	}else if(unum.value.length!=18){
+		    		alert("身份证号码为18位数字")
+		    		return false;
+		    	}
+		    	var form=document.forms[0];
+		    	form.submit();
+		    }
+
+		</script>
+		<script type="text/javascript" language="JavaScript">
+		    //定义省份
+			var provinces=new Array();
+			provinces[0]="辽宁省";
+			provinces[1]="四川省";
+			provinces[2]="江苏省";
+			//定义城市
+			var citys=new Array();
+			citys[0]=new Array();
+			citys[1]=new Array();
+			citys[2]=new Array();
+			citys[0][0]="沈阳市";
+			citys[0][1]="大连市";
+			citys[0][2]="抚顺市";
+			citys[1][0]="南充市";
+			citys[1][1]="绵阳市";
+			citys[1][2]="成都市";
+			citys[2][0]="苏州市";
+			citys[2][1]="无锡市";
+			citys[2][2]="南京市";
+			function changeCity(){
+				//首选获取到省份控件对象
+				var pro=document.getElementById("prop");
+				var city=document.getElementById("city");
+				city.options.length=0;
+				var pvalue=pro.options[pro.selectedIndex].value;
+				for(var j=0;j<citys[pvalue].length;j++){
+					var text=citys[pvalue][j];
+					var value=j;
+					city.options[city.options.length]=new Option(text,value);
+				}
+
+			}
+		</script>
+	</head>
+	<body>
+		<form action="1.html" method="post" >
+		<font size="6">注册信息</font><br />
+		<hr /><br />
+		注：标有*号处均为必填<br /><br /><br />
+		<table >
+			<tr>
+				<th><font size="5" color="orange">登录信息</font></th>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>登录名：</td>
+				<td><input type="text" name="username" id="username"/></td>
+				<td>由字母，数字或“_”组成，长度不少于6位，不多于30位</td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>密码：</td>
+				<td><input type="password" name="password1" id="userpass1"/></td>
+				<td>不少于6位字符</td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>确认密码：</td>
+				<td><input type="password" name="password2" id="userpass2" /></td>
+				<td>请再次确认密码</td>
+			</tr>
+			<tr>
+				<td><font size="5" color="orange">详细信息</font></td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>真实姓名：</td>
+				<td><input type="text" name="realname" id="realname" /></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>性别：</td>
+				<td><input type="radio" name="sex" value="男" checked/>男
+				<input type="radio" name="sex"/>女</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>省份：</td>
+				<td>
+					<select name="province" id="prop" onchange="changeCity()">
+						<option value="a" >省份</option>
+						<script type="text/javascript" language="JavaScript">
+							for(var i=0;i<provinces.length;i++){
+								document.write("<option value='"+i+"'>"+provinces[i]+"</option>");
+							}
+						</script>
+					</select>
+
+				</td>
+				<td>城市：<select name="city" id="city">
+					<option value="a">城市</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>证件类型：</td>
+				<td><select name="idcard">
+					<option value="1">二代身份证</option>
+					<option value="2">港澳通行证</option>
+					<option value="3">台湾通行证</option>
+					<option value="4" selected>护照</option>
+				</select></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>证件号码：</td>
+				<td><input type="text" name="num"id="num"/></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><font color="red">*</font>出生日期：</td>
+				<td><input type="date" name="birthday" /></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>旅客类型:</td>
+				<td><select name="lktype">
+					<option value="0">成人</option>
+					<option value="1">儿童</option>
+					<option value="2">婴儿</option>
+					<option value="3">老人</option>
+				</select></td>
+				<td></td>
+			</tr>
+			<tr >
+				<td>备注：</td>
+				<td ><textarea name="bz" rows="5" cols="25"></textarea></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td colspan="2">
+					<input type="checkbox" name="agree" />我已阅读并同意
+					<font color="blue">《中国铁路客户服务中心网站服务条款》</font>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td ><input type="button" name="btn1"  value="提交" onclick="f_validate()"/></td>
+				<td ><input type="button" name="btn2"  value="重置" /></td>
+			</tr>
+		</table>
+		</form>
+	</body>
+</html>
